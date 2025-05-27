@@ -108,6 +108,12 @@ CREATE TABLE Terminal_Empresa (
     telefono bigint(20) NOT NULL, 
     PRIMARY KEY (Terminalid, Empresaid)
     );
+CREATE TABLE IF NOT EXISTS LogVentas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  ticket_id BIGINT,
+  fecha DATETIME,
+  monto INT
+);
 ALTER TABLE Bus ADD CONSTRAINT FKBus_tp_bus FOREIGN KEY (Tipo_busid) REFERENCES Tipo_bus (id);
 ALTER TABLE Bus ADD CONSTRAINT FKBus_Emp FOREIGN KEY (Empresaid) REFERENCES Empresa (id);
 ALTER TABLE Municipio ADD CONSTRAINT FKMunicipio_Dep FOREIGN KEY (Departamentoid) REFERENCES Departamento (id);

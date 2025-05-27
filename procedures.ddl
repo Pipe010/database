@@ -270,4 +270,39 @@ END$$
 
 DELIMITER ;
 ;
+USE `pasajes`;
+DROP procedure IF EXISTS `venderPasaje`;
+
+DELIMITER $$
+USE `pasajes`$$
+CREATE PROCEDURE venderPasaje(
+  IN p_nombre VARCHAR(20),
+  IN p_apellido VARCHAR(25),
+  IN p_documento INT,
+  IN p_correo VARCHAR(25),
+  IN p_fecha_nac DATE,
+  IN p_telefono BIGINT,
+  IN p_rutaId BIGINT,
+  IN p_tipoDocId TINYINT
+)
+BEGIN
+  DECLARE nuevoTicketId BIGINT;
+  DECLARE precioTicket INT;
+
+  SET precioTicket = calculaPrecio(p_rutaId);
+
+  INSERT INTO Ticket(fecha_expe, fecha_venc, Rutaid)
+    VALUES(NOW(), DATE_ADD(NOW(), INTERVAL 1 DAY), p_rutaId);
+  SET nuevoTicketId = LAST_INSERT_ID();
+
+  INSERT INTO Pasajero(
+    nombre, apellido, documento, correo, fecha_nac, telefono, Ticketid, Tipo_docid
+  ) VALUES(
+    p_nombre, p_apellido, p_documento, p_correo, p_fecha_nac, p_telefono, 
+    nuevoTicketId, p_tipoDocId
+  );
+END;$$
+
+DELIMITER ;
+
 
