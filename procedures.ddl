@@ -270,39 +270,63 @@ END$$
 
 DELIMITER ;
 ;
+
 USE `pasajes`;
 DROP procedure IF EXISTS `venderPasaje`;
 
 DELIMITER $$
 USE `pasajes`$$
-CREATE PROCEDURE venderPasaje(
-  IN p_nombre VARCHAR(20),
-  IN p_apellido VARCHAR(25),
-  IN p_documento INT,
-  IN p_correo VARCHAR(25),
-  IN p_fecha_nac DATE,
-  IN p_telefono BIGINT,
-  IN p_rutaId BIGINT,
-  IN p_tipoDocId TINYINT
+CREATE PROCEDURE `venderPasaje` (
+  IN nom VARCHAR(20),
+  IN ape VARCHAR(25),
+  IN doc INT(10),
+  IN co VARCHAR(25),
+  IN f_nac DATE,
+  IN tel BIGINT(20),
+  IN f_ticket BIGINT(20),
+  IN f_tipodoc TINYINT(3)
 )
 BEGIN
-  DECLARE nuevoTicketId BIGINT;
-  DECLARE precioTicket INT;
+  DECLARE nuevoticketID BIGINT(20);
+  DECLARE precioticket INT(10);
 
-  SET precioTicket = calculaPrecio(p_rutaId);
+  SET precioticket = calculaprecio(f_ticket);
 
-  INSERT INTO Ticket(fecha_expe, fecha_venc, Rutaid)
-    VALUES(NOW(), DATE_ADD(NOW(), INTERVAL 1 DAY), p_rutaId);
-  SET nuevoTicketId = LAST_INSERT_ID();
+  INSERT INTO ticket (fecha_expe, fecha_venc, Rutaid)
+    VALUES(NOW(), DATE_ADD(NOW(), INTERVAL 1 DAY), f_ticket);
+  SET nuevoticketID = LAST_INSERT_ID();
 
-  INSERT INTO Pasajero(
-    nombre, apellido, documento, correo, fecha_nac, telefono, Ticketid, Tipo_docid
-  ) VALUES(
-    p_nombre, p_apellido, p_documento, p_correo, p_fecha_nac, p_telefono, 
-    nuevoTicketId, p_tipoDocId
-  );
+  INSERT INTO pasajero (nombre, apellido, documento, correo, fecha_nac, telefono, Ticketid, Tipo_docid) 
+  VALUES (nom, ape, doc, co, f_nac, tel, nuevoticketID, f_tipodoc);
+  
 END;$$
 
 DELIMITER ;
+
+USE `pasajes`;
+DROP procedure IF EXISTS `asignarBusARuta`;
+
+DELIMITER $$
+USE `pasajes`$$
+CREATE PROCEDURE `asignarBusARuta` (
+
+	 IN f_bus INT(10),
+	 IN f_ruta BIGINT(20)
+     
+)
+BEGIN
+
+	IF NOT estaAsignado(f_bus, f_ruta) THEN
+		INSERT INTO ruta_bus(Rutaid, Busid, fechasalida)
+		VALUES(f_ruta, f_bus, UNIX_TIMESTAMP());
+	END IF;
+    
+END$$
+
+DELIMITER ;
+
+
+
+
 
 
