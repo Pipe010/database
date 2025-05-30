@@ -1,0 +1,11 @@
+ACTIVIDAD 01
+
+Proceso 1: "Venta de pasajes" 
+Se creo una Función que calcula el precio del tickete según la ruta
+Se creo un Procedure que realiza la venta creando el ticket
+Se creo un Trigger que se dispara después de crear el Ticket anotando la venta en un registro este registro se llama logventas
+
+Proceso 2:"Asignar bus a una ruta"
+Se creo una Función que verifica que el bus no este ya asignado a otra ruta   
+Se creo un Procedure que asigna el bus a la ruta si esta libre
+Se creo un Trigger que se dispara después de asignar el bus a la ruta realizando un registro en la tabla logasignaciones cada nueva asignacion
