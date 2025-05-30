@@ -8,4 +8,4 @@ Se creo un Trigger que se dispara después de crear el Ticket anotando la venta 
 Proceso 2:"Asignar bus a una ruta"
 Se creo una Función que verifica que el bus no este ya asignado a otra ruta   
 Se creo un Procedure que asigna el bus a la ruta si esta libre
-Se creo un Trigger que se dispara después de asignar el bus a la ruta realizando un registro en la tabla logasignaciones cada nueva asignacion
+Se creo un Trigger que se dispara después de asignar el bus a la ruta realizando un registro en la tabla logasignaciones cada nueva asignación.
