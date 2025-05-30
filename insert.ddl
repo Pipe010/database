@@ -31,3 +31,6 @@ select	* from tipo_licencia;
 insert	into licencia values (108576395,1,"17-17-17", "08-08-08",2),(1123659874,2,"12-12-12", "09-09-09",1 ),(1532569852,2,"11-11-11", "07-07-07",1); 
 select	* from licencia;
 call insertpasa (1,"pepe","pascal",1023569836,"fhgdffhgdf@fghfgh","10-10-10",3176646074,1,2);
+call insertticket(4,"2015-11-10","2015-11-11",3);
+call insertruta_bus(3,3,"2020-11-11");
+call insertruta_bus(2,1,"2010-10-10");

@@ -8,7 +8,7 @@ in id int,
 in placa varchar(7),
 in num_serial int(10), 
 in color varchar(25), 
-in Tipo_busid tinyint(3), 
+in Tipo_busid tinyint(3),
 in Empresaid tinyint(3), 
 in Conductorid bigint(20)
 )
